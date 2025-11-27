@@ -1,0 +1,17 @@
+Name,Email Address,AnswerQuery
+Gayatri Prusty,gayatri06.gp@gmail.com,SELECT DISTINCT category AS pizza_category FROM pizza_types;
+Gayatri Prusty,gayatri06.gp@gmail.com,"SELECT pizza_type_id, name, COALESCE(ingredients,'Missing Data') AS ingredients FROM pizza_types LIMIT 5;"
+Gayatri Prusty,gayatri06.gp@gmail.com,SELECT * FROM pizzas WHERE price IS NULL;
+Gayatri Prusty,gayatri06.gp@gmail.com,SELECT * FROM orders WHERE date = '2015-01-01';
+Gayatri Prusty,gayatri06.gp@gmail.com,SELECT * FROM pizzas ORDER BY price DESC;
+Gayatri Prusty,gayatri06.gp@gmail.com,"SELECT * FROM pizzas WHERE size IN ('L','XL');"
+Gayatri Prusty,gayatri06.gp@gmail.com,SELECT * FROM pizzas WHERE price BETWEEN 15.00 AND 17.00 ORDER BY price;
+Gayatri Prusty,gayatri06.gp@gmail.com,SELECT * FROM pizza_types WHERE UPPER(name) LIKE '%CHICKEN%';
+Gayatri Prusty,gayatri06.gp@gmail.com,SELECT * FROM orders WHERE date = '2015-02-15' OR time > '20:00:00';
+Gayatri Prusty,gayatri06.gp@gmail.com,SELECT SUM(quantity) AS total_pizzas_sold FROM order_details;
+Gayatri Prusty,gayatri06.gp@gmail.com,"SELECT ROUND(AVG(price),2) AS avg_price_pizza FROM pizzas;"
+Gayatri Prusty,gayatri06.gp@gmail.com,"SELECT o.order_id, SUM(p.price*o.quantity) AS order_value FROM order_details o LEFT JOIN pizzas p ON o.pizza_id=p.pizza_id GROUP BY o.order_id ORDER BY order_value DESC, o.order_id;"
+Gayatri Prusty,gayatri06.gp@gmail.com,"SELECT pt.category, SUM(quantity) AS total_orders FROM order_details o LEFT JOIN pizzas p ON o.pizza_id=p.pizza_id LEFT JOIN pizza_types pt ON p.pizza_type_id=pt.pizza_type_id GROUP BY pt.category;"
+Gayatri Prusty,gayatri06.gp@gmail.com,"SELECT pt.category, SUM(quantity) AS total_orders FROM order_details o LEFT JOIN pizzas p ON o.pizza_id=p.pizza_id LEFT JOIN pizza_types pt ON p.pizza_type_id=pt.pizza_type_id GROUP BY pt.category HAVING SUM(quantity) > 5000;"
+Gayatri Prusty,gayatri06.gp@gmail.com,"SELECT p.pizza_id, p.size, pt.name AS pizza_name, pt.category FROM pizzas p LEFT JOIN pizza_types pt ON p.pizza_type_id=pt.pizza_type_id WHERE NOT EXISTS (SELECT 1 FROM order_details o WHERE o.pizza_id = p.pizza_id);"
+Gayatri Prusty,gayatri06.gp@gmail.com,"SELECT pt.name, pt.category, p1.size AS size_1, p2.size AS size_2, ROUND(p1.price - p2.price,2) AS price_difference FROM pizzas p1 JOIN pizzas p2 ON p1.pizza_type_id = p2.pizza_type_id AND p1.size < p2.size JOIN pizza_types pt ON p1.pizza_type_id = pt.pizza_type_id ORDER BY pt.name;"
